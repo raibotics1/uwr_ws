@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+<robot name="uwr_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find uwr_robot_description)/urdf/uwr_robot.trans" />
+
+<material name="blue">
+  <color rgba="0 0 1 1"/>
+</material>
+
+<link name="base_link">
+  <inertial>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <mass value="78845.01612018594"/>
+    <inertia ixx="117926.916342" iyy="224258.601452" izz="255893.936865" ixy="-214.81795" iyz="80.63054" ixz="-7183.372273"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <material name="blue"/>
+    <geometry>
+      <mesh filename="package://uwr_robot_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://uwr_robot_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="base_dummy_link">
+</link>
+
+
+
+<!-- Connect base_dummy_link to base_link -->
+<joint name="dummy_to_base" type="fixed">
+  <parent link="base_dummy_link"/>
+  <child link="base_link"/>
+</joint>
+
+</robot>
